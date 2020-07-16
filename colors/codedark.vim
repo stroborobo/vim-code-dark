@@ -67,11 +67,13 @@ endif
 
 let s:cdNone = {'gui': 'NONE', 'cterm': 'NONE', 'cterm256': 'NONE'}
 let s:cdFront = {'gui': '#D4D4D4', 'cterm': s:cterm05, 'cterm256': '188'}
-let s:cdBack = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
+"let s:cdBack = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
+let s:cdBackContrast = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
+let s:cdBack = {}
 
 let s:cdTabCurrent = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
-let s:cdTabOther = {'gui': '#2D2D2D', 'cterm': s:cterm01, 'cterm256': '236'}
-let s:cdTabOutside = {'gui': '#252526', 'cterm': s:cterm01, 'cterm256': '235'}
+let s:cdTabOther = {'gui': '#373737', 'cterm': s:cterm01, 'cterm256': '236'}
+let s:cdTabOutside = {'gui': '#373737', 'cterm': s:cterm01, 'cterm256': '235'}
 
 let s:cdLeftDark = {'gui': '#252526', 'cterm': s:cterm01, 'cterm256': '235'}
 let s:cdLeftMid = {'gui': '#373737', 'cterm': s:cterm03, 'cterm256': '237'}
@@ -88,7 +90,7 @@ let s:cdSplitThumb = {'gui': '#424242', 'cterm': s:cterm04, 'cterm256': '238'}
 
 let s:cdCursorDarkDark = {'gui': '#222222', 'cterm': s:cterm01, 'cterm256': '235'}
 let s:cdCursorDark = {'gui': '#51504F', 'cterm': s:cterm03, 'cterm256': '239'}
-let s:cdCursorLight = {'gui': '#AEAFAD', 'cterm': s:cterm04, 'cterm256': '145'}
+let s:cdCursorLight = {'gui': '#ea39e2', 'cterm': s:cterm04, 'cterm256': '145'}
 let s:cdSelection = {'gui': '#264F78', 'cterm': s:cterm03, 'cterm256': '24'}
 let s:cdLineNumber = {'gui': '#5A5A5A', 'cterm': s:cterm04, 'cterm256': '240'}
 
@@ -139,11 +141,11 @@ call <sid>hi('DiffChange', {}, s:cdDiffRedDark, 'none', {})
 call <sid>hi('DiffDelete', {}, s:cdDiffRedLight, 'none', {})
 call <sid>hi('DiffText', {}, s:cdDiffRedLight, 'none', {})
 call <sid>hi('EndOfBuffer', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('ErrorMsg', s:cdRed, s:cdBack, 'none', {})
+call <sid>hi('ErrorMsg', s:cdRed, s:cdBackContrast, 'none', {})
 call <sid>hi('VertSplit', s:cdSplitDark, s:cdBack, 'none', {})
 call <sid>hi('Folded', s:cdLeftLight, s:cdLeftDark, 'underline', {})
 call <sid>hi('FoldColumn', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('SignColumn', {}, s:cdBack, 'none', {})
+call <sid>hi('SignColumn', {}, s:cdLeftDark, 'none', {})
 call <sid>hi('IncSearch', s:cdNone, s:cdSearchCurrent, 'none', {})
 call <sid>hi('LineNr', s:cdLineNumber, s:cdBack, 'none', {})
 call <sid>hi('CursorLineNr', s:cdPopupFront, s:cdBack, 'none', {})
@@ -201,7 +203,8 @@ call <sid>hi('PreCondit', s:cdPink, {}, 'none', {})
 call <sid>hi('Type', s:cdBlue, {}, 'none', {})
 call <sid>hi('StorageClass', s:cdBlue, {}, 'none', {})
 call <sid>hi('Structure', s:cdBlue, {}, 'none', {})
-call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
+"call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
+call <sid>hi('Typedef', s:cdBlueGreen, {}, 'none', {})
 
 call <sid>hi('Special', s:cdFront, {}, 'none', {})
 call <sid>hi('SpecialChar', s:cdFront, {}, 'none', {})
@@ -215,7 +218,7 @@ call <sid>hi("Conceal", s:cdFront, s:cdBack, 'none', {})
 
 call <sid>hi('Ignore', s:cdFront, {}, 'none', {})
 
-call <sid>hi('Error', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
+call <sid>hi('Error', s:cdRed, s:cdBackContrast, 'undercurl', s:cdRed)
 
 call <sid>hi('Todo', s:cdNone, s:cdLeftMid, 'none', {})
 
@@ -280,9 +283,13 @@ call <sid>hi('jsClassKeyword', s:cdBlue, {}, 'none', {})
 call <sid>hi('jsExtendsKeyword', s:cdBlue, {}, 'none', {})
 call <sid>hi('jsExportDefault', s:cdPink, {}, 'none', {})
 call <sid>hi('jsFuncCall', s:cdYellow, {}, 'none', {})
-call <sid>hi('jsObjectValue', s:cdLightBlue, {}, 'none', {})
 call <sid>hi('jsParen', s:cdLightBlue, {}, 'none', {})
 call <sid>hi('jsObjectProp', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('jsObjectKey', s:cdYellow, {}, 'none', {})
+call <sid>hi('jsFunctionKey', s:cdYellow, {}, 'none', {})
+call <sid>hi('jsObjectValue', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('jsParen', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('jsOperatorKeyword', s:cdBlue, {}, 'none', {})
 
 " Typescript:
 call <sid>hi('typescriptLabel', s:cdLightBlue, {}, 'none', {})
@@ -352,9 +359,11 @@ call <sid>hi('typescriptGlobalMethod', s:cdYellow, {}, 'none', {})
 call <sid>hi('typescriptPromiseMethod', s:cdYellow, {}, 'none', {})
 
 " XML:
-call <sid>hi('xmlTag', s:cdBlueGreen, {}, 'none', {})
-call <sid>hi('xmlTagName', s:cdBlueGreen, {}, 'none', {})
-call <sid>hi('xmlEndTag', s:cdBlueGreen, {}, 'none', {})
+"call <sid>hi('xmlTag', s:cdGray, {}, 'none', {})
+call <sid>hi('xmlTag', s:cdBlue, {}, 'none', {})
+call <sid>hi('xmlTagName', s:cdBlue, {}, 'none', {})
+call <sid>hi('xmlAttrib', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('xmlEndTag', s:cdBlue, {}, 'none', {})
 
 " Ruby:
 call <sid>hi('rubyClassNameTag', s:cdBlueGreen, {}, 'none', {})
@@ -421,7 +430,7 @@ call <sid>hi('gitcommitSelectedFile', s:cdGreen, {}, 'none', {})
 call <sid>hi('gitcommitDiscardedType', s:cdRed, {}, 'none', {})
 call <sid>hi('gitcommitDiscardedFile', s:cdRed, {}, 'none', {})
 call <sid>hi('gitcommitOverflow', s:cdRed, {}, 'none', {})
-call <sid>hi('gitcommitSummary', s:cdPink, {}, 'none', {})
+call <sid>hi('gitcommitSummary', s:cdYellowOrange, {}, 'none', {})
 call <sid>hi('gitcommitBlank', s:cdPink, {}, 'none', {})
 
 " Lua:
@@ -430,6 +439,22 @@ call <sid>hi('luaFuncArgName', s:cdLightBlue, {}, 'none', {})
 call <sid>hi('luaFuncKeyword', s:cdPink, {}, 'none', {})
 call <sid>hi('luaLocal', s:cdPink, {}, 'none', {})
 call <sid>hi('luaBuiltIn', s:cdBlue, {}, 'none', {})
+
 " YAML:
 call <sid>hi('yamlKey', s:cdBlue, {}, 'none', {})
 call <sid>hi('yamlConstant', s:cdBlue, {}, 'none', {})
+
+" FSharp:
+call <sid>hi('fsharpKeyword', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpKeyChar', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpOperator', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpGenericComma', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpFunDef', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpException', s:cdBlue, {}, 'none', {})
+call <sid>hi('fsharpTypeName', s:cdBlueGreen, {}, 'none', {})
+call <sid>hi('fsharpTypeSignature', s:cdBlueGreen, {}, 'none', {})
+call <sid>hi('fsharpUnnamedFieldType', s:cdBlueGreen, {}, 'none', {})
+"call <sid>hi('fsharpType', s:cdBlueGreen, {}, 'none', {})
+call <sid>hi('fsharpAttrib', s:cdBlueGreen, {}, 'none', {})
+call <sid>hi('fsharpCoreClass', s:cdFront, {}, 'none', {})
+call <sid>hi('fsharpCoreMethod', s:cdYellow, {}, 'none', {})
